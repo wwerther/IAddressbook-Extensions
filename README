@@ -1,0 +1,31 @@
+
+iCal support for iAddressbook
+-----------------------------
+
+                                      written by Walter Werther <walter@wwerther.de>
+
+ This part of code extracts all valid birthdates from the database and generates
+ an ics-file that can be used e.g. in the Lightning-Plugin of Thunderbird to display
+ all birthdays of all your contacts.
+
+ supports user authentication in the same manner as it is done in iAddressbook.
+ added a new authorisation group named 'ical_getcalendar'
+ User has to have access to this group to use this component
+
+add these lines to conf/auth.php
+---- 8< --- 8< ---  8< ---  8< ---  8< ---  8< ---  8< ---  8< ---  8< --- 
+$auth['calendar']['password']    = '--- enter your md5 sum here  ---';
+$auth['calendar']['permissions'] = array();
+$auth['calendar']['groups']      = array('@ical_client');
+$auth['@ical_client']['permissions']  = array('ical_getcalendar');
+---- >8 --- >8 --- >8 --- >8 --- >8 --- >8 --- >8 --- >8 --- >8 --- >8 --- >8 
+
+
+      2008-09-03 <walter@wwerther.de>: rewrote pieces of the code, so it can 
+                 be used in iAddressbook (http://iaddressbook.org/) 
+                 I think it is not 100% compatible anymore, but works fine for
+                 this use-case
+      based on libs from http://idmi.poly.edu/pdlab/ical-with-fixes-2006-10-10.zip
+      based on iCal component by Michael Wimmer <flaimo@gmx.net>
+
+
